@@ -22,12 +22,12 @@ class AddPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: MyTextField(hintText: 'Name', isText: true),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: MyTextField(hintText: 'Phone', isText: false),
           ),
           ElevatedButton(
