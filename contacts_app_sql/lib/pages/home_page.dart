@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                     contactName: contactList[index].name,
                     contactPhone: contactList[index].phone,
                     deleteFunction: (context) {
-                      // AppStorage.deleteData(index);
+                      dbHelper.deleteContact(contactList[index].id);
                       updateList();
                     },
                   ),
