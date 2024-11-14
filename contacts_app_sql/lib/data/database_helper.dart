@@ -91,7 +91,8 @@ class DatabaseHelper {
   }
 
   // Deletes a contact by its ID
-  Future<int> deleteContact(int id) async {
+  Future<int> deleteContact(int? id) async {
+    if (id == null) return 0;
     final db = await database;
     return await db.delete(
       'contacts',

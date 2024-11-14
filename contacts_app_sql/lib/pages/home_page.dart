@@ -2,6 +2,7 @@ import 'package:contacts_app_sql/components/contact_tile.dart';
 import 'package:contacts_app_sql/data/database_helper.dart';
 import 'package:contacts_app_sql/pages/add_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,20 +49,22 @@ class _HomePageState extends State<HomePage> {
               ).then((value) => updateList());
             },
             child: const Icon(Icons.add)),
-        body: ListView.builder(
-            itemCount: contactList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
-                child: ContactTile(
-                  contactName: contactList[index].name,
-                  contactPhone: contactList[index].phone,
-                  deleteFunction: (context) {
-                    // AppStorage.deleteData(index);
-                    updateList();
-                  },
-                ),
-              );
-            }));
+        body: SlidableAutoCloseBehavior(
+          child: ListView.builder(
+              itemCount: contactList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
+                  child: ContactTile(
+                    contactName: contactList[index].name,
+                    contactPhone: contactList[index].phone,
+                    deleteFunction: (context) {
+                      // AppStorage.deleteData(index);
+                      updateList();
+                    },
+                  ),
+                );
+              }),
+        ));
   }
 }
