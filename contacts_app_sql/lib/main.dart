@@ -1,10 +1,8 @@
-import 'package:contacts_app_sql/data/app_storage.dart';
 import 'package:contacts_app_sql/pages/add_page.dart';
 import 'package:contacts_app_sql/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  await AppStorage.appStorageInitilize();
   runApp(const MyApp());
 }
 

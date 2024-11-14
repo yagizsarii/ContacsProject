@@ -1,5 +1,5 @@
 import 'package:contacts_app_sql/components/my_text_field.dart';
-import 'package:contacts_app_sql/data/app_storage.dart';
+import 'package:contacts_app_sql/data/database_helper.dart';
 import 'package:flutter/material.dart';
 
 class AddPage extends StatefulWidget {
@@ -10,6 +10,7 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
+  final DatabaseHelper dbHelper = DatabaseHelper();
   final contactName = TextEditingController();
   final contactPhone = TextEditingController();
 
@@ -41,7 +42,8 @@ class _AddPageState extends State<AddPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                AppStorage.addData(contactName.text, contactPhone.text);
+                dbHelper.insertContact(
+                    Contact(name: contactName.text, phone: contactPhone.text));
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(

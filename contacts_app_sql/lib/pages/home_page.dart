@@ -1,5 +1,5 @@
 import 'package:contacts_app_sql/components/contact_tile.dart';
-import 'package:contacts_app_sql/data/app_storage.dart';
+import 'package:contacts_app_sql/data/database_helper.dart';
 import 'package:contacts_app_sql/pages/add_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +11,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List contactList = [];
+  final DatabaseHelper dbHelper = DatabaseHelper();
+  List<Contact> contactList = [];
 
-  void updateList() {
+  void updateList() async {
+    List<Contact> updatedContacts = await dbHelper.fetchAllContacts();
     setState(() {
-      contactList = AppStorage.getList();
+      contactList = updatedContacts;
     });
   }
 
@@ -52,10 +54,10 @@ class _HomePageState extends State<HomePage> {
               return Padding(
                 padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
                 child: ContactTile(
-                  contactName: contactList[index][0],
-                  contactPhone: contactList[index][1],
+                  contactName: contactList[index].name,
+                  contactPhone: contactList[index].phone,
                   deleteFunction: (context) {
-                    AppStorage.deleteData(index);
+                    // AppStorage.deleteData(index);
                     updateList();
                   },
                 ),
