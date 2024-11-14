@@ -4,9 +4,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class ContactTile extends StatelessWidget {
   final String contactName;
   final String contactPhone;
-  Function(BuildContext)? deleteFunction;
+  final Function(BuildContext)? deleteFunction;
 
-  ContactTile(
+  const ContactTile(
       {super.key,
       required this.contactName,
       required this.contactPhone,
