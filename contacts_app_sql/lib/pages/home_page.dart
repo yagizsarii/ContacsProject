@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
                     contactPhone: contactList[index].phone,
                     deleteFunction: (context) {
                       dbHelper.deleteContact(contactList[index].id);
+                      Slidable.of(context)?.close();
                       updateList();
                     },
                   ),
